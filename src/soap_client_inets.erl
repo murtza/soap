@@ -47,7 +47,7 @@ stop() ->
 http_request(URL, Request, Options, Headers, ContentType) ->
     Request_as_binary = iolist_to_binary(Request),
     case httpc:request(post, {URL, Headers, ContentType, Request_as_binary},
-                       Options ++ [{'timeout', 2000}],
+                       Options ++ [{'timeout', 10000}],
                        [{body_format, binary}]) of
         {ok,{{_HTTP,200,_OK},ResponseHeaders,ResponseBody}} ->
               {ok, 200, ResponseHeaders, ResponseBody};
